@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+  
+  <title>{{config['SITE_TITLE']}}</title>
+  {% block headscripts %}{% endblock headscripts %}
+  {% block stylesheets %}{% endblock stylesheets %}
+</head>
+<body class="{% block body_class %}{% endblock body_class %}">
+  <!-- site wrapper -->
+  <div class="wrapper">
+    <!-- Navbar -->
+    {% include 'includes/navigation.html' %}
+
+    <!-- Sidebar Container -->
+    {% include 'includes/sidebar.html' %}
+
+    <!-- Content Wrapper. Contains page content -->
+    {% block content %}{% endblock content %}
+
+    <!-- Footer -->
+    {% include 'includes/footer.html' %}
+    
+
+  </div>
+  <!-- ./wrapper -->
+
+  {% block javascripts %}{% endblock javascripts %}
+</body>
+</html>

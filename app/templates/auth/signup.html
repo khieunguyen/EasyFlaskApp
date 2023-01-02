@@ -1,0 +1,135 @@
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{config['SITE_NAME']}} | Sign Up</title>
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&amp;display=fallback">
+
+    <script src="https://kit.fontawesome.com/0b0bc30e16.js" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="/static/css/adminlte.min.css?v=3.2.0">
+    <link rel="icon" href="/static/img/favicon.ico" type="image/x-icon">
+
+</head>
+
+<body class="hold-transition register-page" >
+    <div class="register-box">
+        
+        <div class="card card-outline card-primary">
+            <div class="card-header text-center register-logo">
+              <a href="/"><b>{{config['SITE_NAME']}}</b> </a>
+            </div>
+
+            <div class="card-body register-card-body">
+              <p class="register-box-msg">Create a new account</p>
+              {% with messages = get_flashed_messages() %}
+              {% if messages %}
+                  <div class="callout callout-danger">
+                      {{ messages[0] }}. Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+                  </div>
+              {% endif %}
+              {% endwith %}
+              <form action="signup" method="post" id="signup" novalidate="novalidate">
+                  <div class="input-group mb-3">
+                      <input name="email" type="email" class="form-control" placeholder="Email" id="email">
+                      <div class="input-group-append">
+                          <div class="input-group-text">
+                              <span class="fas fa-envelope"></span>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="input-group mb-3">
+                      <input name="password" type="password" class="form-control" placeholder="Password"  id="password">
+                      <div class="input-group-append">
+                          <div class="input-group-text">
+                              <span class="fas fa-lock"></span>
+                          </div>
+                      </div>
+                  </div>
+                  <div class="input-group mb-3">
+                    
+                  </div>
+                  
+                  <div class="input-group mb-3">
+                    <div class="col-8">
+                      <div class="custom-control custom-checkbox">
+                        <input type="checkbox" name="terms" class="custom-control-input" id="termsAgreed">
+                        <label class="custom-control-label" for="termsAgreed">I agree to the <a href="#">terms</a>.</label>
+                      </div>
+                    </div>
+                    <div class="col-4">
+                        <button type="submit" class="btn btn-primary btn-block">Register</button>
+                    </div>
+                  </div>
+              </form>
+                
+            </div>
+            <div class="card-footer">
+              Has an account? <a href="{{ url_for('auth.login') }}">Login here</a>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.3.min.js"
+        integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU="
+        crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-Fy6S3B9q64WdZWQUiU+q4/2Lc9npb8tCaSX9FK7E8HnRr0Jz8D6OP9dO5Vg3Q9ct" crossorigin="anonymous"></script>
+
+    <script src="/static/js/adminlte.js"></script>
+
+    <script>
+        $(function () {
+          $.validator.setDefaults({
+            submitHandler: function (form) {
+              //alert( "Form successful submitted!" );
+              form.summit()
+            }
+          });
+          $('#signup').validate({
+            rules: {
+              email: {
+                required: true,
+                email: true,
+              },
+              password: {
+                required: true,
+                minlength: 5
+              },
+              terms: {
+                required: true
+              },
+            },
+            messages: {
+              email: {
+                required: "Please enter an email address",
+                email: "Please enter a valid email address"
+              },
+              password: {
+                required: "Please provide a password",
+                minlength: "Your password must be at least 5 characters long"
+              },
+              terms: "Please accept our terms"
+            },
+            errorElement: 'span',
+            errorPlacement: function (error, element) {
+              error.addClass('invalid-feedback');
+              element.closest('.input-group').append(error);
+            },
+            highlight: function (element, errorClass, validClass) {
+              $(element).addClass('is-invalid');
+            },
+            unhighlight: function (element, errorClass, validClass) {
+              $(element).removeClass('is-invalid');
+            }
+          });
+        });
+        </script>
+
+</body>
+
+</html>

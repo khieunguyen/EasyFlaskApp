@@ -79,7 +79,7 @@ gunicorn app:app -b 0.0.0.0:5000 --workers=1 --threads=2
 ### Prerequirements
 The authentication module require a DB schema which contains a `User` table. You can use whatever DB management system you like such as MySQL, SQLite, MSSQL, ...
 In this example I use MySQL.
-- Make sure you have a `.env` file in the root project folder to store all sensitive secret environment variables. (See example `.evv.sample`)
+- Make sure you have a `.env` file in the root project folder to store all sensitive secret environment variables. (See example `.env.sample`)
 - Create a schema name, for example `easyflaskapp`
 - Create `User` table using a provided script `mysql_scripts.sql`
 - Update the DB connection information in `.env` file

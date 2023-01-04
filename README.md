@@ -4,20 +4,108 @@ FYI, AdminLTE is an open-source dashboard built on top of Bootstrap 4.
 
 
 ## Let's get started
-> Start the app
+
+### Preparation - Install `poetry`
+> Linux, macOS, Windows
+```bash
+curl -sSL https://install.python-poetry.org | python3 -
+```
+
+> Windows (Powershell)
+```PowerShell 
+(Invoke-WebRequest -Uri https://install.python-poetry.org -UseBasicParsing).Content | py -
+```
+
+More information about `poetry` can be found [here](https://python-poetry.org/docs/#installing-with-the-official-installer)
+
+
+**Optional:** enable tab completion when using poetry:
+> Bash
+```bash
+poetry completions bash >> ~/.bash_completion
+```
+
+> Fish
+```bash 
+poetry completions fish > ~/.config/fish/completions/poetry.fish
+```
+
+> Zsh
+```bash
+poetry completions zsh > ~/.zfunc/_poetry
+```
+
+### Set up the environment
+On your terminal, let's `cd` to the your project folder (e.g `EasyFlaskApp`) and run the following command to initialize a new environment and install all dependencies:
+```bash
+poetry install
+```
+
+If you prefer to create a new virtual environment within the current project folder, you can run the following command before running `poetry install`:
+```bash
+poetry config virtualenvs.in-project true
+```
+
+> Activate environment
+```bash
+poetry shell
+```
+
+> Deactivate environment
+```bash 
+exit
+```
+
+### 🚀 Start the app
+After activate the virtual environment, you can start the app:
 ```bash
 flask run
 ```
 
-If you don't want to use the authentication module, feel free to remove the authentication module `mod_auth` at line `43` in the app `__init__.py` file.
-```python
-def register_blueprints(app):
-    for module_name in ('home','mod_auth'
-                        ):
+> ✨ In windows, you might need to run the app by adding `python -m` before the command: 
+```bash 
+python -m flask run
 ```
 
+Or you can also start the app using `gunicorn` for example
+```bash 
+gunicorn app:app -b 0.0.0.0:5000 --workers=1 --threads=2
+```
+
+> More usefull `gunicorn` parameters can be found [here](https://docs.gunicorn.org/en/latest/run.html) 
+
+
+## Enable authentication module
+### Prerequirements
+The authentication module require a DB schema which contains a `User` table. You can use whatever DB management system you like such as MySQL, SQLite, MSSQL, ...
+In this example I use MySQL.
+- Make sure you have a `.env` file in the root project folder to store all sensitive secret environment variables. (See example `.evv.sample`)
+- Create a schema name, for example `easyflaskapp`
+- Create an `User` table using a provided script `mysql_scripts.sql`
+- Update the DB connection information in `.env` file
+
+### Enable authentication module
+By default, the authentication module will be disabled. 
+If you want to use the authentication module, feel free to add the authentication module `mod_auth` at line `43` in `app/__init__.py` file.
+
+```python
+def register_blueprints(app):
+    for module_name in ('home',
+                        'mod_auth'
+                    ):
+```
+
+> You might also need to add `@login_required` protection to the `index` route in the main module `app/home/controllers.py` as well. 
+```python 
+@blueprint.route('/')
+@login_required
+def index():
+    return render_template('home/index.html', config=app.config)
+```
+
+
 ### Create new user
-> By default, the app will redirect guest users to the login page. If you don't have any account, feel free to click to the registration page and create new account.
+By default, the app will redirect guest users to the login page. If you don't have any account, feel free to click to the registration page and create new account as well as set up two steps authentication. No worries, it is just a few steps and very easy to follows. 
 
 ## Code-base structure
 ```bash

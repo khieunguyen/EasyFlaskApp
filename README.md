@@ -3,7 +3,7 @@ A ready to use boilerplate Flask App built on top of an [AdminLTE v3.2](https://
 FYI, AdminLTE is an open-source dashboard built on top of Bootstrap 4. 
 
 
-## Let's get started
+## 🔥Let's get started
 
 ### Preparation - Install `poetry`
 > Linux, macOS, Windows
@@ -36,7 +36,7 @@ poetry completions zsh > ~/.zfunc/_poetry
 ```
 
 ### Set up the environment
-On your terminal, let's `cd` to the your project folder (e.g `EasyFlaskApp`) and run the following command to initialize a new environment and install all dependencies:
+On your terminal, let's `cd` to your project folder (e.g `EasyFlaskApp`) and run the following command to initialize a new environment and install all dependencies:
 ```bash
 poetry install
 ```
@@ -46,18 +46,18 @@ If you prefer to create a new virtual environment within the current project fol
 poetry config virtualenvs.in-project true
 ```
 
-> Activate environment
+**Activate environment**
 ```bash
 poetry shell
 ```
 
-> Deactivate environment
+**Deactivate environment**
 ```bash 
 exit
 ```
 
 ### 🚀 Start the app
-After activate the virtual environment, you can start the app:
+After activating the virtual environment, you can start the app:
 ```bash
 flask run
 ```
@@ -67,7 +67,7 @@ flask run
 python -m flask run
 ```
 
-Or you can also start the app using `gunicorn` for example
+Uou can also start the app using `gunicorn`, for example
 ```bash 
 gunicorn app:app -b 0.0.0.0:5000 --workers=1 --threads=2
 ```
@@ -81,7 +81,7 @@ The authentication module require a DB schema which contains a `User` table. You
 In this example I use MySQL.
 - Make sure you have a `.env` file in the root project folder to store all sensitive secret environment variables. (See example `.evv.sample`)
 - Create a schema name, for example `easyflaskapp`
-- Create an `User` table using a provided script `mysql_scripts.sql`
+- Create `User` table using a provided script `mysql_scripts.sql`
 - Update the DB connection information in `.env` file
 
 ### Enable authentication module
@@ -105,7 +105,9 @@ def index():
 
 
 ### Create new user
-By default, the app will redirect guest users to the login page. If you don't have any account, feel free to click to the registration page and create new account as well as set up two steps authentication. No worries, it is just a few steps and very easy to follows. 
+By default, the app will redirect guest users to the login page. If you don't have any account, feel free to click to the registration link and create new account as well as set up two-steps authentication. No worries, it can be done in 3 simple steps. 
+
+🎉 🎉 🎉 
 
 ## Code-base structure
 ```bash

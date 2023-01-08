@@ -19,10 +19,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [0.1.0] - 2022-12-21
 Initital version 
 ### Added
-
 - Core Flask app
 - Login/Sign up pages with MySQL DB
 - Two step verification
 - Error handle pages
+- Demo page: Sentiment analysis
 
 

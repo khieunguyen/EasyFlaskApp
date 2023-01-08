@@ -42,6 +42,7 @@ from importlib import import_module
 def register_blueprints(app):
     for module_name in ('home',
                         # 'mod_auth'
+                        'examples'
                     ):
         module = import_module('app.{}.controllers'.format(module_name))
         app.register_blueprint(module.blueprint)

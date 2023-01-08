@@ -109,6 +109,12 @@ By default, the app will redirect guest users to the login page. If you don't ha
 
 🎉 🎉 🎉 
 
+## Demo: Sentiment Analysis
+You can found a demo of using Sentiment Analysis model from Hugingface in `examples` module (`app/examples`). Enable `Sentiment Analysis` module in `app/__init__.py` and add new item to side bar menu `app/templates/includes/sidebar.html`.
+
+![Demo - Sentiment Analysis](docs/sentiment_analysis.png)
+
+
 ## Code-base structure
 ```bash
 <PROJECT DIR>

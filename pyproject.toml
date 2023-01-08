@@ -6,7 +6,7 @@ authors = ["Khieu Nguyen <nvkhieu89@gmail.com>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
-python = "^3.8"
+python = "^3.7"
 pyotp = "^2.8.0"
 flask = "^2.2.2"
 sqlalchemy = {extras = ["asyncio"], version = "^1.4.45"}
@@ -19,6 +19,7 @@ pyqrcode = "^1.2.1"
 
 [tool.poetry.group.dev.dependencies]
 sqlacodegen = {version = "^2.3.0"}
+sentence-transformers = "^2.2.2"
 
 [build-system]
 requires = ["poetry-core"]
